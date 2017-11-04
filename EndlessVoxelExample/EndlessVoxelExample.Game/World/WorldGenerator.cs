@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 
@@ -9,10 +10,12 @@ namespace EndlessVoxelExample.World
     {
         public TransformComponent Player;
 
-        private const int ViewDistance = 20;
+        private const int ViewDistance = 30;
 
         private IDictionary<Coordinate, List<Entity>> _existingVoxelModels;
         Prefab _voxelPrefab;
+        private Coordinate _oldPosition;
+        private int _frameCount;
 
         public override void Start()
         {
@@ -26,8 +29,21 @@ namespace EndlessVoxelExample.World
         {
             Coordinate roundedPlayerPosition = new Coordinate(Player.Position.X, Player.Position.Y, Player.Position.Z);
 
-            CreateMissingVoxels(roundedPlayerPosition);
+            if (_oldPosition != roundedPlayerPosition)
+            {
+                _oldPosition = roundedPlayerPosition;
+            }
+
             DeleteOutOfRangeVoxels(roundedPlayerPosition);
+            CreateMissingVoxels(roundedPlayerPosition);
+
+
+            if (_frameCount % 10 == 0)
+            {
+                Console.WriteLine("Number of visible voxels: " + _existingVoxelModels.Count);
+            }
+
+            _frameCount++;
         }
 
         private void CreateMissingVoxels(Coordinate roundedPlayerPosition)
@@ -45,7 +61,7 @@ namespace EndlessVoxelExample.World
 
         private void DeleteOutOfRangeVoxels(Coordinate roundedPlayerPosition)
         {
-            foreach (Coordinate coordinate in _existingVoxelModels.Keys)
+            foreach (Coordinate coordinate in _existingVoxelModels.Keys.ToList())
             {
                 if (_existingVoxelModels.ContainsKey(coordinate) && IsOutOfRange(coordinate, roundedPlayerPosition))
                 {
@@ -53,6 +69,7 @@ namespace EndlessVoxelExample.World
                     {
                         SceneSystem.SceneInstance.RootScene.Entities.Remove(entity);
                     }
+                    _existingVoxelModels.Remove(coordinate);
                 }
             }
         }
@@ -67,12 +84,10 @@ namespace EndlessVoxelExample.World
         {
             if (!_existingVoxelModels.ContainsKey(coordinate))
             {
-                Console.WriteLine($"Creating ({coordinate.X}, {coordinate.Z})");
-
                 List<Entity> entities = _voxelPrefab.Instantiate();
                 SceneSystem.SceneInstance.RootScene.Entities.AddRange(entities);
-                int y = TerrainGenerator.GetTerrainHeight(coordinate.X, coordinate.Z);
 
+                int y = TerrainGenerator.GetTerrainHeight(coordinate.X, coordinate.Z);
                 foreach (var entity in entities)
                 {
                     entity.Transform.Position = new Vector3(coordinate.X, y, coordinate.Z);
@@ -98,6 +113,38 @@ namespace EndlessVoxelExample.World
         public Coordinate(float x, float y, float z)
             : this((int)x, (int)y, (int)z)
         {
+        }
+
+        public bool Equals(Coordinate other)
+        {
+            return X == other.X && Y == other.Y && Z == other.Z;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is Coordinate && Equals((Coordinate) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = X;
+                hashCode = (hashCode * 397) ^ Y;
+                hashCode = (hashCode * 397) ^ Z;
+                return hashCode;
+            }
+        }
+
+        public static bool operator ==(Coordinate left, Coordinate right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Coordinate left, Coordinate right)
+        {
+            return !left.Equals(right);
         }
     }
 }

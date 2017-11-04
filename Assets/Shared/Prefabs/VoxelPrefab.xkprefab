@@ -1,0 +1,44 @@
+!PrefabAsset
+Id: 097fadca-dece-43e6-acb8-7ef9cf91f8bd
+SerializedVersion: {Xenko: 2.1.0.1}
+Tags: []
+Hierarchy:
+    RootParts:
+        - ref!! 60bd9dff-4806-404b-a146-17b2ce81e712
+    Parts:
+        -   Entity:
+                Id: 60bd9dff-4806-404b-a146-17b2ce81e712
+                Name: Voxel
+                Components:
+                    53d6605d67c994c23f02ebe2f1117900: !TransformComponent
+                        Id: 7118e1fc-b241-47b6-9f10-c3d4ea31ee7e
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    4ae7922e9d9d2488702d1412a6e025e5: !ModelComponent
+                        Id: 7ef1f7c2-81a1-4b4e-b5be-cce85d86cd0f
+                        Model: 89cce9f6-d262-4dc1-aec0-cbdcb669fe84:Models/Voxel
+                        Materials: {}
+                    3de7f152ea31b1c44cf982219306c764: !RigidbodyComponent
+                        Id: 56051982-6e8b-4efa-bf64-caa51b10eef3
+                        CanSleep: true
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        IsKinematic: true
+                        Mass: 0.0
+                        LinearDamping: 0.0
+                        AngularDamping: 0.0
+                        OverrideGravity: false
+                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        NodeName: null
+                        ColliderShapes:
+                            15e16ae48ce342c6f7c9f4f0bbbda38e: !BoxColliderShapeDesc
+                                Is2D: false
+                                Size: {X: 1.0, Y: 1.0, Z: 1.0}
+                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
+                                LocalRotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}

@@ -1,0 +1,43 @@
+!Package
+Id: f68ebd17-676f-4abd-bb16-a6b19f2379f4
+SerializedVersion: {Assets: 0.0.4}
+Meta:
+    Name: Minecrafty
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: Minecrafty
+    Dependencies:
+        -   Name: Xenko
+            Version: 2.1.0.2
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: Minecrafty.Game/Effects
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 4d5a7f67-9149-42d7-b249-5a8b16a6a6ff
+                Location: Minecrafty.Game/Minecrafty.Game.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 02665bcb-3e73-49b2-8d58-2da76325536f
+                Location: Minecrafty.Windows/Minecrafty.Windows.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets:
+    - 097fadca-dece-43e6-acb8-7ef9cf91f8bd:Prefabs/VoxelPrefab
+    - 89cce9f6-d262-4dc1-aec0-cbdcb669fe84:Models/Voxel
+    - bb7b0adc-703b-4354-8423-475cd7e0cf35:Materials/Debug

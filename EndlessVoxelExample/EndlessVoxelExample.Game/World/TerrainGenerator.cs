@@ -4,13 +4,13 @@ namespace EndlessVoxelExample.World
 {
     internal static class TerrainGenerator
     {
-        private const int MaxTerrainHeight = 100;
-        private const double LongWaveFrequency = 0.000324563;
+        private const int MaxTerrainHeight = 200;
+        private const double LongWaveFrequency = 0.000100024563;
         private const double LongWaveAmplitude = 255;
-        private const double ShortWaveAmplitude = 68;
+        private const double ShortWaveAmplitude = 15;
         private const double ShortWaveFrequency = 0.08;
         private const double UltraShortWaveFrequency = .3;
-        private const double UltraShortWaveAmplitude = 4;
+        private const double UltraShortWaveAmplitude = 2;
 
         public static int GetTerrainHeight(int x, int z)
         {

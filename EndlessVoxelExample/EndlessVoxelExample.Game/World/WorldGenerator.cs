@@ -15,7 +15,6 @@ namespace EndlessVoxelExample.World
         private IDictionary<Coordinate, List<Entity>> _existingVoxelModels;
         Prefab _voxelPrefab;
         private Coordinate _oldPosition;
-        private int _frameCount;
 
         public override void Start()
         {
@@ -36,14 +35,6 @@ namespace EndlessVoxelExample.World
 
             DeleteOutOfRangeVoxels(roundedPlayerPosition);
             CreateMissingVoxels(roundedPlayerPosition);
-
-
-            if (_frameCount % 10 == 0)
-            {
-                Console.WriteLine("Number of visible voxels: " + _existingVoxelModels.Count);
-            }
-
-            _frameCount++;
         }
 
         private void CreateMissingVoxels(Coordinate roundedPlayerPosition)

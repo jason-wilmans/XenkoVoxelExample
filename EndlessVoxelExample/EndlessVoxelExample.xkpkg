@@ -1,0 +1,42 @@
+!Package
+Id: 5b64666e-8f5d-4ec6-b4d2-f0247ce4b224
+SerializedVersion: {Assets: 0.0.4}
+Meta:
+    Name: EndlessVoxelExample
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: EndlessVoxelExample
+    Dependencies:
+        -   Name: Xenko
+            Version: 2.1.0.2
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: EndlessVoxelExample.Game/Effects
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 196e106f-34dc-485b-b0e5-3edbcdbdf050
+                Location: EndlessVoxelExample.Game/EndlessVoxelExample.Game.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: a30657c1-89a1-4472-92ac-6ef153102ed0
+                Location: EndlessVoxelExample.Windows/EndlessVoxelExample.Windows.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets:
+    - 8686b541-501b-4241-a513-d1f6d9cf8d79:Prefabs/VoxelPrefab
+    - 937cbdd5-0cf3-4371-8e10-3bb34919bbf9:Models/Cube

@@ -1,0 +1,11 @@
+!ProceduralModelAsset
+Id: 937cbdd5-0cf3-4371-8e10-3bb34919bbf9
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Type: !CubeProceduralModel
+    Size: {X: 1.0, Y: 1.0, Z: 1.0}
+    Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+    UvScale: {X: 1.0, Y: 1.0}
+    LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
+    MaterialInstance:
+        Material: 7219db3f-dcca-4a22-80bf-8d39f50d3e28:Materials/GridMTx10

@@ -116,6 +116,7 @@
     <Compile Include="Player\PlayerController.cs" />
     <Compile Include="Player\PlayerInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="World\OpenSimplexNoise.cs" />
     <Compile Include="World\TerrainGenerator.cs" />
     <Compile Include="World\WorldGenerator.cs" />
   </ItemGroup>

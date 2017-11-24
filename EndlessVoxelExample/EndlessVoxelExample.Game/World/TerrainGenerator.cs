@@ -1,31 +1,37 @@
 ﻿using System;
+using SiliconStudio.Core.Mathematics;
 
 namespace EndlessVoxelExample.World
 {
     internal static class TerrainGenerator
     {
-        private const int MaxTerrainHeight = 200;
-        private const double LongWaveFrequency = 0.000100024563;
-        private const double LongWaveAmplitude = 255;
-        private const double ShortWaveAmplitude = 15;
-        private const double ShortWaveFrequency = 0.08;
-        private const double UltraShortWaveFrequency = .3;
-        private const double UltraShortWaveAmplitude = 2;
 
-        public static int GetTerrainHeight(int x, int z)
+        private const int MaxTerrainHeight = 20;
+
+        private const int NoiseScale = 20;
+
+        private static readonly Random Random = new Random();
+        private static readonly OpenSimplexNoise SimplexNoise = new OpenSimplexNoise(Random.Next());
+
+        public static int GetTerrainHeight(int worldX, int worldZ)
         {
-            double longWaveHeightX = LongWaveAmplitude * Math.Sin(LongWaveFrequency * x);
-            double shortWaveHeightX = ShortWaveAmplitude * Math.Cos(ShortWaveFrequency * x);
-            double ultraShortWaveHeightX = UltraShortWaveAmplitude * Math.Sin(UltraShortWaveFrequency * x);
+            double lowerNoiseX = (double)worldX / NoiseScale;
+            double lowerNoiseY = (double)worldZ / NoiseScale;
+            
+            double lowerLeft = SimplexNoise.Evaluate(lowerNoiseX, lowerNoiseY);
+            double upperLeft = SimplexNoise.Evaluate(lowerNoiseX, lowerNoiseY + 1);
+            double lowerRight = SimplexNoise.Evaluate(lowerNoiseX + 1, lowerNoiseY);
+            double upperRight = SimplexNoise.Evaluate(lowerNoiseX + 1, lowerNoiseY + 1);
 
-            double longWaveHeightZ = LongWaveAmplitude * Math.Sin(LongWaveFrequency * z);
-            double shortWaveHeightZ = ShortWaveAmplitude * Math.Cos(ShortWaveFrequency * z);
-            double ultraShortWaveHeightZ = UltraShortWaveAmplitude * Math.Sin(UltraShortWaveFrequency * z);
+            double rightAmount = (worldX - lowerNoiseX * NoiseScale) / NoiseScale;
+            double forwardAmount = (worldZ - lowerNoiseY * NoiseScale) / NoiseScale;
+            double totalAmount = (rightAmount + forwardAmount) / 2;
 
-            double normalizedHeight = (longWaveHeightX + longWaveHeightZ + shortWaveHeightX + shortWaveHeightZ + ultraShortWaveHeightX + ultraShortWaveHeightZ) /
-                                      (2 * LongWaveAmplitude + 2 * ShortWaveAmplitude + 2 * UltraShortWaveAmplitude);
+            double firstDiagonal = MathUtil.Lerp(lowerLeft, upperRight, totalAmount);
+            double secondDiagonal = MathUtil.Lerp(upperLeft, lowerRight, totalAmount);
+            double value = (firstDiagonal + secondDiagonal) / 2;
 
-            return (int)(normalizedHeight * MaxTerrainHeight);
+            return (int) (MaxTerrainHeight * value);
         }
     }
 }

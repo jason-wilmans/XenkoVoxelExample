@@ -132,6 +132,7 @@ Hierarchy:
                     2cf4164d7b5281166277850245e0bd70: !EndlessVoxelExample.World.WorldGenerator,EndlessVoxelExample.Game
                         Id: 3c6cada4-c4d4-44b8-8e46-1792f2042cf6
                         Player: ref!! 207596b2-4880-411e-b569-d385767428ce
+                        VoxelScale: 0.5
         -   Entity:
                 Id: a7564c4c-7704-4354-a353-9207a2232954
                 Name: CameraTarget

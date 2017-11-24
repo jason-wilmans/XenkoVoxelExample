@@ -10,7 +10,9 @@ namespace EndlessVoxelExample.World
     {
         public TransformComponent Player;
 
-        private const int ViewDistance = 30;
+        public float VoxelScale;
+
+        private const int ViewDistance = 50;
 
         private IDictionary<Coordinate, List<Entity>> _existingVoxelModels;
         Prefab _voxelPrefab;
@@ -26,7 +28,7 @@ namespace EndlessVoxelExample.World
 
         public override void Update()
         {
-            Coordinate roundedPlayerPosition = new Coordinate(Player.Position.X, Player.Position.Y, Player.Position.Z);
+            Coordinate roundedPlayerPosition = new Coordinate(Player.Position.X * 1 / VoxelScale, Player.Position.Y * 1 / VoxelScale, Player.Position.Z *  1/VoxelScale);
 
             if (_oldPosition != roundedPlayerPosition)
             {
@@ -44,8 +46,8 @@ namespace EndlessVoxelExample.World
             {
                 for (int z = -halfDistance; z <= halfDistance; z++)
                 {
-                    Coordinate surroundingCoordinate = new Coordinate(roundedPlayerPosition.X + x, 0, roundedPlayerPosition.Z + z);
-                    CreateVoxelIfNotExists(surroundingCoordinate);
+                    Coordinate surroundedCoordinate = new Coordinate(roundedPlayerPosition.X + x, 0, roundedPlayerPosition.Z + z);
+                    CreateVoxelIfNotExists(surroundedCoordinate);
                 }
             }
         }
@@ -81,7 +83,8 @@ namespace EndlessVoxelExample.World
                 int y = TerrainGenerator.GetTerrainHeight(coordinate.X, coordinate.Z);
                 foreach (var entity in entities)
                 {
-                    entity.Transform.Position = new Vector3(coordinate.X, y, coordinate.Z);
+                    entity.Transform.Position = new Vector3(coordinate.X * VoxelScale, y * VoxelScale, coordinate.Z * VoxelScale);
+                    entity.Transform.Scale *= VoxelScale;
                 }
                 _existingVoxelModels[coordinate] = entities;
             }

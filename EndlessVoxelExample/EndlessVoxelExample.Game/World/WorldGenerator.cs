@@ -31,10 +31,10 @@ namespace EndlessVoxelExample.World
             if (_oldPosition != roundedPlayerPosition)
             {
                 _oldPosition = roundedPlayerPosition;
-            }
 
-            DeleteOutOfRangeVoxels(roundedPlayerPosition);
-            CreateMissingVoxels(roundedPlayerPosition);
+                DeleteOutOfRangeVoxels(roundedPlayerPosition);
+                CreateMissingVoxels(roundedPlayerPosition);
+            }
         }
 
         private void CreateMissingVoxels(Coordinate roundedPlayerPosition)

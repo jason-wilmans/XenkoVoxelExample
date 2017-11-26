@@ -8,7 +8,7 @@ namespace EndlessVoxelExample.World
 
         private const int MaxTerrainHeight = 20;
 
-        private const int NoiseScale = 20;
+        private const int NoiseScale = 30;
 
         private static readonly Random Random = new Random();
         private static readonly OpenSimplexNoise SimplexNoise = new OpenSimplexNoise(Random.Next());

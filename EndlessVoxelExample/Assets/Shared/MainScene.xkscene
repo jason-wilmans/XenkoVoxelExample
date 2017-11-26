@@ -98,7 +98,7 @@ Hierarchy:
                                 LocalRotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                     f722a19496166946a5d26eaf23d2ae03: !EndlessVoxelExample.Player.PlayerController,EndlessVoxelExample.Game
                         Id: 94a122f7-1696-4669-a5d2-6eaf23d2ae03
-                        MaxRunSpeed: 8.5
+                        MaxRunSpeed: 10.0
                         JumpReactionThreshold: 0.15
                     809bf66aef692646891c293be4ca17b2: !EndlessVoxelExample.Player.PlayerInput,EndlessVoxelExample.Game
                         Id: 6af69b80-69ef-4626-891c-293be4ca17b2
@@ -132,7 +132,7 @@ Hierarchy:
                     2cf4164d7b5281166277850245e0bd70: !EndlessVoxelExample.World.WorldGenerator,EndlessVoxelExample.Game
                         Id: 3c6cada4-c4d4-44b8-8e46-1792f2042cf6
                         Player: ref!! 207596b2-4880-411e-b569-d385767428ce
-                        VoxelScale: 0.5
+                        VoxelScale: 0.75
         -   Entity:
                 Id: a7564c4c-7704-4354-a353-9207a2232954
                 Name: CameraTarget

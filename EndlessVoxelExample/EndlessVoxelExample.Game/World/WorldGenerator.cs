@@ -12,7 +12,7 @@ namespace EndlessVoxelExample.World
 
         public float VoxelScale;
 
-        private const int ViewDistance = 50;
+        private const int ViewDistance = 20;
 
         private IDictionary<Coordinate, List<Entity>> _existingVoxelModels;
         Prefab _voxelPrefab;

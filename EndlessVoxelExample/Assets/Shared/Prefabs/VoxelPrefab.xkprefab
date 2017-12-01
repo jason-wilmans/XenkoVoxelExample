@@ -22,6 +22,8 @@ Hierarchy:
                         Materials: {}
                     ca37d10a11b5d7d43315b2a381d11779: !RigidbodyComponent
                         Id: 260fb599-5b81-435a-82b3-10d3db27b064
+                        CollisionGroup: StaticFilter
+                        CanCollideWith: DefaultFilter, KinematicFilter, DebrisFilter, SensorTrigger, CharacterFilter, CustomFilter1, CustomFilter2, CustomFilter3, CustomFilter4, CustomFilter5, CustomFilter6, CustomFilter7, CustomFilter8, CustomFilter9, CustomFilter10
                         CanSleep: true
                         Restitution: 0.0
                         Friction: 0.5
